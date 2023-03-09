@@ -1,0 +1,27 @@
+/* Styling for the body that changes the attributes of the text font and placement on the screen */
+header{
+   text-align: center;
+   font-size: 26px;
+   padding: 20px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #236168;
+}
+
+.input_field{
+   text-align: left;
+   padding: 5px;
+   clear: both;
+   margin: 10px 0;
+}
+
+#calculator{
+  display: block;
+  margin: 0 auto;
+  position:relative;
+  max-height:20%;
+  max-width:20%;
+}
