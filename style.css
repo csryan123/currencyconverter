@@ -18,6 +18,14 @@ body {
    margin: 10px 0;
 }
 
+#to_currency
+{
+    height:100px;
+    width:490px;
+    font-size:42pt;
+    text-align: center;
+}
+
 #calculator{
   display: block;
   margin: 0 auto;
