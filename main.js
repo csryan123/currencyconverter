@@ -31,5 +31,5 @@ function loadCurrencyRate() {
   document.getElementById("base_currency").addEventListener("input", function(e) {
      recalculateCurrency();
   });
-
+//here is a new comment
 }
