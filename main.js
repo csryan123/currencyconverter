@@ -1,4 +1,4 @@
-function calculateTriangleArea() {
+function recalculateCurrency() {
   var base = document.getElementById("base_currency").value;
   var rate = document.getElementById("currency_rate").value;
   
@@ -27,5 +27,9 @@ function loadCurrencyRate() {
   oReq.open("GET", "https://api.freecurrencyapi.com/v1/latest?base_currency=EUR&currencies=USD");
   oReq.setRequestHeader("apikey", "kCE29RH8r5fuBVFbhsxO5uBiBYAA2q60rpCscZt7");
   oReq.send();
+
+  document.getElementById("base_currency").addEventListener("input", function(e) {
+     recalculateCurrency();
+  });
 
 }
