@@ -11,6 +11,31 @@ function recalculateCurrency() {
   document.getElementById("to_currency").value = base * rate;
 }
 
+function loadRate(baseCurrency, toCurrency) {
+
+  if (baseCurrency.value.length !=3 || toCurrency.value.length != 3)
+  {
+    return;
+  }
+
+  var currenciesRequest = new XMLHttpRequest();
+
+  currenciesRequest.addEventListener("load", function () {
+       console.log(this.responseText);
+       const obj = JSON.parse(this.responseText);
+
+       console.log(obj["data"]);
+       console.log("data[0]= " + JSON.stringify(obj["data"][toCurrency.value]));
+
+       document.getElementById("currency_rate").value = Number(obj["data"][toCurrency.value]);
+
+  });
+
+  currenciesRequest.open("GET", "https://api.freecurrencyapi.com/v1/latest?base_currency=" + baseCurrency.value + "&currencies=" + toCurrency.value);
+  currenciesRequest.setRequestHeader("apikey", "kCE29RH8r5fuBVFbhsxO5uBiBYAA2q60rpCscZt7");
+  currenciesRequest.send();
+}
+
 function loadCurrencyRate() {
 
   var currenciesRequest = new XMLHttpRequest();
@@ -18,9 +43,6 @@ function loadCurrencyRate() {
       // console.log(this.responseText);
       const obj = JSON.parse(this.responseText);
           
-      console.log(obj.data);
-      console.log(typeof obj); 
-      console.log(typeof obj.data);
       var currencyKeys = Object.keys(obj.data);
       console.log(currencyKeys);
       let i = 0;
@@ -33,7 +55,6 @@ function loadCurrencyRate() {
          var el = document.createElement("option");
          var e2 = document.createElement("option");
 
-         console.log("key=" + String(opt));
          el.textContent = String(opt);
          el.value = String(opt);
          e2.textContent = String(opt);
@@ -43,7 +64,20 @@ function loadCurrencyRate() {
          i++;
       }
 
-});
+      selectTo.addEventListener("input", function(e) {
+      	console.log("selectTo = " + selectTo.value);
+	loadRate(selectFrom, selectTo);
+      });
+
+      selectFrom.addEventListener("input", function(e) {
+	console.log("selectFrom = " + selectFrom.value);
+	loadRate(selectFrom, selectTo);
+      });
+
+  });
+
+  
+
   currenciesRequest.open("GET", "https://api.freecurrencyapi.com/v1/currencies");
   currenciesRequest.setRequestHeader("apikey", "kCE29RH8r5fuBVFbhsxO5uBiBYAA2q60rpCscZt7");
   currenciesRequest.send();
@@ -59,7 +93,7 @@ function loadCurrencyRate() {
 
        document.getElementById("currency_rate").value = Number(obj.data.USD);
 
-});
+  });
 
   oReq.open("GET", "https://api.freecurrencyapi.com/v1/latest?base_currency=EUR&currencies=USD");
   oReq.setRequestHeader("apikey", "kCE29RH8r5fuBVFbhsxO5uBiBYAA2q60rpCscZt7");
