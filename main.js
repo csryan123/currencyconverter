@@ -76,28 +76,9 @@ function loadCurrencyRate() {
 
   });
 
-  
-
   currenciesRequest.open("GET", "https://api.freecurrencyapi.com/v1/currencies");
   currenciesRequest.setRequestHeader("apikey", "kCE29RH8r5fuBVFbhsxO5uBiBYAA2q60rpCscZt7");
   currenciesRequest.send();
-
-
-  var oReq = new XMLHttpRequest();
-  oReq.addEventListener("load", function () {
-       console.log(this.responseText);
-       const obj = JSON.parse(this.responseText);
-
-       console.log(obj.data);
-       console.log(obj.data.USD);
-
-       document.getElementById("currency_rate").value = Number(obj.data.USD);
-
-  });
-
-  oReq.open("GET", "https://api.freecurrencyapi.com/v1/latest?base_currency=EUR&currencies=USD");
-  oReq.setRequestHeader("apikey", "kCE29RH8r5fuBVFbhsxO5uBiBYAA2q60rpCscZt7");
-  oReq.send();
 
   document.getElementById("base_currency").addEventListener("input", function(e) {
      recalculateCurrency();

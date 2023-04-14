@@ -11,21 +11,19 @@
     <img id="calculator" src="sooga.jpeg">
 <body onload=loadCurrencyRate()>
       <div class="input_field">
-        <label>Euros:</label>
+        <select id="selectFromCurrency">
+          <option>From currency</option>
+        </select>
         <input id="base_currency" type="number" size="20" >
       </div>
       <div class="input_field">
-        <label>Currency Rate:</label>
+	<label>Currenct Rate:</label>
         <input id="currency_rate" type="number" size="20" >
       </div>
       <div class="input_field">
-        <label>USD:</label>
+        <select id="selectToCurrency">
+          <option>To currency</option>
+        </select>
         <input readonly id="to_currency" type="number" size="20" >
       </div>
-     <select id="selectFromCurrency">
-        <option>From currency</option>
-     </select>
-     <select id="selectToCurrency">
-        <option>To currency</option>
-     </select>
 </body>
